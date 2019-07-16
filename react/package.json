@@ -1,0 +1,48 @@
+{
+  "name": "cabal-ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "moment": "^2.24.0",
+    "react": "^16.8.6",
+    "react-blockies": "^1.4.1",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-knobs": "^5.1.9",
+    "@storybook/addon-links": "^5.1.9",
+    "@storybook/addon-viewport": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
+    "@storybook/preset-scss": "^1.0.2",
+    "@storybook/react": "^5.1.9",
+    "css-loader": "^3.0.0",
+    "react-scripts": "3.0.1",
+    "sass-loader": "^7.1.0",
+    "standard": "^13.0.2",
+    "style-loader": "^0.23.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
