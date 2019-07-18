@@ -1,0 +1,39 @@
+.channelHeader {
+  -webkit-app-region: drag;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+
+  .title {
+    align-items: center;
+
+    .channelName {
+      font-size: 1.1rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      align-items: center;
+      display: flex;
+    }
+  
+    .topic {
+      font-size: 0.75rem;
+      color: #666
+    }
+  }
+
+  .actions {
+    display: flex;
+    vertical-align: middle;
+    text-align: right;
+
+    .settingsButton {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+  }
+}

@@ -17,6 +17,7 @@
     "@storybook/preset-scss": "^1.0.2",
     "@storybook/react": "^5.1.9",
     "css-loader": "^3.0.0",
+    "node-sass": "^4.12.0",
     "react-scripts": "3.0.1",
     "sass-loader": "^7.1.0",
     "standard": "^13.0.2",

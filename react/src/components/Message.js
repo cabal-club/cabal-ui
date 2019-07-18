@@ -4,13 +4,16 @@ import moment from 'moment'
 
 import Avatar from './Avatar'
 
+import './Message.scss'
+
 export default function Message ({ message: { nickname, content, time }, repeatedNickname }) {
+  time = moment(time)
+
   const renderDate = (time) => {
-    const t = moment(time)
     return (
-      <span>
-        {t.format('h:mm A')}
-        <span className='messages__item__metadata__date'>{t.format('LL')}</span>
+      <span className='date'>
+        {time.format('h:mm A')}
+        <span className='date--full'>{time.format('LL')}</span>
       </span>
     )
   }
@@ -21,12 +24,12 @@ export default function Message ({ message: { nickname, content, time }, repeate
   }
 
   return (
-    <div className='messages__item'>
-      <div className='messages__item__avatar'>
+    <div className='message'>
+      <div className='avatarContainer'>
         {repeatedNickname ? null : <Avatar name={nickname || 'conspirator'} />}
       </div>
-      <div className='messages__item__metadata'>
-        {repeatedNickname ? null : <div className='messages__item__metadata__name'>{nickname || 'conspirator'}{renderDate(time)}</div>}
+      <div className='content'>
+        {repeatedNickname ? null : <div className='name'>{nickname || 'conspirator'}{renderDate(time)}</div>}
         <div className={repeatedNickname ? 'text indent' : 'text'}>
           {enrichText(content)}
         </div>
@@ -39,7 +42,7 @@ Message.propTypes = {
   message: PropTypes.shape({
     nickname: PropTypes.string,
     content: PropTypes.string,
-    time: PropTypes.string
+    time: PropTypes.object
   }),
   repeatedNickname: PropTypes.bool
 }

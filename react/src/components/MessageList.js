@@ -3,17 +3,19 @@ import PropTypes from 'prop-types'
 
 import Message from './Message'
 
+import './MessageList.scss'
+
 export default function MessageList ({ messages, nickname, onScroll }) {
   if (messages.length === 0) {
     return (
-      <div className='messages starterMessage'>
+      <div className='messageList starterMessage'>
         This is a new channel. Send a message to start things off!
       </div>
     )
   } else {
     let lastNickname = null
     return (
-      <div className='messages' onScroll={onScroll}>
+      <div className='messageList' onScroll={onScroll}>
         {messages.map((message, index) => {
           const repeatedNickname = message.nickname === lastNickname
           lastNickname = message.nickname
@@ -27,7 +29,7 @@ export default function MessageList ({ messages, nickname, onScroll }) {
 }
 
 MessageList.propTypes = {
-  messages: PropTypes.array,
+  messages: PropTypes.array.isRequired,
   nickname: PropTypes.string,
   onScroll: PropTypes.func
 }

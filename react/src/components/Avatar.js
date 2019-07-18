@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Identicon from 'react-blockies'
 
+import './Avatar.scss'
+
 export default function Avatar ({ name, bgColor, onClick }) {
   return (
     <Identicon

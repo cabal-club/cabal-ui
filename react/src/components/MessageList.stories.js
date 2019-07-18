@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import MessageList from './MessageList'
+import { longMessage } from './Message.stories'
 
 export const defaultProps = {
   nickname: 'person'
@@ -20,10 +21,25 @@ export const defaultMessages = [
   },
   {
     nickname: 'friend',
-    content: 'person: Thanks! So happy to be here!',
+    content: 'person: Thanks! So happy to be here! ❤️',
     time: new Date(2019, 8, 21, 12, 2)
   }
 ]
 
+export const manyMessages = [
+  ...defaultMessages,
+  longMessage,
+  ...defaultMessages,
+  ...defaultMessages,
+  longMessage,
+  ...defaultMessages,
+  ...defaultMessages,
+  longMessage,
+  ...defaultMessages
+]
+
 storiesOf('MessageList', module)
-  .add('default', () => <MessageList {...defaultProps} messages={defaultMessages} />)
+  .add('default', () => <MessageList messages={defaultMessages} {...defaultProps} />)
+  .add('many messages', () => <MessageList messages={manyMessages} {...defaultProps} />)
+  .add('loading', () => <MessageList messages={[]} {...defaultProps} loading />)
+  .add('empty', () => <MessageList messages={[]} {...defaultProps} />)
