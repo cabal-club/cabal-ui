@@ -1,20 +1,57 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import CabalList from './CabalList'
 
-import './AppSidebar.scss'
+const AppSidebarContainer = styled.div`
+  align-items: center;
+  background-color: #16161d;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 4.4rem;
+  justify-content: space-between;
+  overflow-y: auto;
+  padding-top: 2rem;
+`
+
+const Footer = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+`
+
+const SettingsButton = styled.div`
+  align-items: center;
+  color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  display: flex;
+  height: 2rem;
+  justify-content: center;
+  margin: 0 0 0.75rem 0;
+  opacity: 0.8;
+  transition: all 0.05s ease-in-out;
+  width: 2rem;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+`
 
 export default function AppSidebar ({ cabals, currentCabal }) {
   return (
-    <div className='appSidebar'>
+    <AppSidebarContainer>
       <CabalList cabals={cabals} currentCabal={currentCabal} />
-      <div className='footer'>
-        <div className='settingsButton'>
+      <Footer>
+        <SettingsButton>
           <img src='static/images/icon-gear.svg' />
-        </div>
-      </div>
-    </div>
+        </SettingsButton>
+      </Footer>
+    </AppSidebarContainer>
   )
 }
 

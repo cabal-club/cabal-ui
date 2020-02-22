@@ -1,31 +1,73 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import './CabalList.scss'
+const CabalListContainer = styled.div`
+  background-color: #16161d;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+`
+
+const List = styled.div`
+  padding: 0 1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+`
+
+const Item = styled.div`
+  align-items: center;
+  border-radius: 100rem;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 700;
+  height: 2rem;
+  justify-content: center;
+  margin: 0 0 0.75rem 0;
+  transition: all 0.05s ease-in-out;
+  width: 2rem;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  &.active {
+    background-color: #693AFA;
+    border: none;
+    color: white !important;
+  }
+`
 
 export default function CabalList ({ cabals, currentCabal, loading, onClick }) {
   if (loading) {
     return (
-      <div className='cabalList'>
+      <CabalListContainer>
         Loading...
-      </div>
+      </CabalListContainer>
     )
   }
   return (
-    <div className='cabalList'>
-      <div className='collection'>
+    <CabalListContainer>
+      <List>
         {cabals.length && cabals.map((cabal, index) => {
           return (
-            <div className='item' key={index} onClick={onClick}>
+            <Item key={index} onClick={onClick}>
               {cabal.key.substr(0, 2)}
-            </div>
+            </Item>
           )
         })}
-        <div className='item'>
+        <Item>
           <img src='static/images/icon-newchannel.svg' />
-        </div>
-      </div>
-    </div>
+        </Item>
+      </List>
+    </CabalListContainer>
   )
 }
 

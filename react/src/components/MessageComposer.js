@@ -1,7 +1,48 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import './MessageComposer.scss'
+const MessageComposerContainer = styled.div`
+  background: #fff;
+  cursor: text;
+  margin: 0 1rem 1rem 1rem;
+`
+
+const InputWrapper = styled.div`
+  align-items: center;
+  border-radius: 3px;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: .5rem 0;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.5);
+  }
+`
+
+const Input = styled.div`
+  padding: 0 1rem;
+  width: 100%;
+`
+
+const Form = styled.div`
+  align-content: center;
+  display: flex;
+  width: 100%;
+`
+
+const Textarea = styled.textarea`
+  border: 0;
+  display: block;
+  font-size: 0.875rem;
+  max-height: 200px;
+  outline: none;
+  resize: none;
+  width: 100%;
+`
 
 export default function MessageComposer ({ channelName }) {
   let textInput = ''
@@ -32,21 +73,21 @@ export default function MessageComposer ({ channelName }) {
   }
 
   return (
-    <div className='messageComposer'>
-      <div className={'inputWrapper'} >
-        <div className={'input'} onClick={focusInput}>
-          <form
+    <MessageComposerContainer>
+      <InputWrapper>
+        <Input onClick={focusInput}>
+          <Form
             onSubmit={onSubmit}
             ref={(form) => { formField = form }}>
-            <textarea
+            <Textarea
               onKeyDown={onKeyDown}
               onKeyUp={onKeyUp}
               ref={(input) => { textInput = input }}
               aria-label='Type a message and press enter'
               placeholder='Write a message'
             />
-          </form>
-        </div>
+          </Form>
+        </Input>
         {/* <div className={'emoji__container'} ref={(el) => { this.emojiPicker = el }} style={{ position: 'absolute', bottom: '100px', right: '16px', display: 'none' }}>
           <Picker
             onSelect={(e) => addEmoji(e)}
@@ -59,8 +100,8 @@ export default function MessageComposer ({ channelName }) {
           />
         </div> */}
         {/* <div className={'composer__other'} onClick={toggleEmojis}><img src='static/images/icon-composerother.svg' /></div> */}
-      </div>
-    </div>
+      </InputWrapper>
+    </MessageComposerContainer>
   )
 }
 

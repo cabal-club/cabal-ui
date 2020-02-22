@@ -1,22 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import Message from './Message'
 import { connect } from 'react-redux'
 
-import './MessageList.scss'
+const MessageListContainer = styled.div`
+  flex-grow: 1;
+  overflow: scroll;
+`
 
 export default function MessageList ({ messages, nickname, onScroll }) {
   if (messages.length === 0) {
     return (
-      <div className='messageList starterMessage'>
+      <MessageListContainer starterMessage>
         This is a new channel. Send a message to start things off!
-      </div>
+      </MessageListContainer>
     )
   } else {
     let lastNickname = null
     return (
-      <div className='messageList' onScroll={onScroll}>
+      <MessageListContainer onScroll={onScroll}>
         {messages.map((message, index) => {
           const repeatedNickname = message.nickname === lastNickname
           lastNickname = message.nickname
@@ -24,7 +28,7 @@ export default function MessageList ({ messages, nickname, onScroll }) {
             <Message key={index} message={message} repeatedNickname={repeatedNickname} />
           )
         })}
-      </div>
+      </MessageListContainer>
     )
   }
 }

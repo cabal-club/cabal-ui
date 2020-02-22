@@ -1,19 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import AppSidebar from './AppSidebar'
 import Channel from './Channel'
 import Sidebar from './Sidebar'
 
-import './Cabal.scss'
+const CabalContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+`
 
 export default function Cabal ({ cabals, currentCabal }) {
   return (
-    <div className='cabal'>
+    <CabalContainer>
       <AppSidebar cabals={cabals} currentCabal={currentCabal} />
       <Sidebar cabal={currentCabal} />
       <Channel channel={currentCabal.currentChannel} />
-    </div>
+    </CabalContainer>
   )
 }
 

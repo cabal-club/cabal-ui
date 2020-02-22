@@ -1,21 +1,60 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import './ChannelHeader.scss'
+const ChannelHeaderContainer = styled.div`
+  -webkit-app-region: drag;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+`
+
+const Title = styled.div`
+  align-items: center;
+`
+
+const ChannelName = styled.h1`
+  align-items: center;
+  display: flex;
+  font-size: 1.1rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+`
+
+const Topic = styled.h2`
+  font-size: 0.75rem;
+  color: #666;
+`
+
+const Actions = styled.h2`
+  display: flex;
+  text-align: right;
+  vertical-align: middle;
+`
+
+const SettingsButton = styled.h2`
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 1rem;
+  vertical-align: middle;
+`
 
 export default function ChannelHeader ({ channel: { name, topic }, onClickSettings, onClickTopic }) {
   return (
-    <div className='channelHeader'>
-      <div className='title'>
-        <h1 className='channelName'>#{name}</h1>
-        <h2 className='topic' onClick={onClickTopic}>{topic}</h2>
-      </div>
-      <div className='actions'>
-        <div className='settingsButton' onClick={onClickSettings}>
-          <img src="static/images/icon-channelother.svg" />
-        </div>
-      </div>
-    </div>
+    <ChannelHeaderContainer>
+      <Title>
+        <ChannelName>#{name}</ChannelName>
+        <Topic onClick={onClickTopic}>{topic}</Topic>
+      </Title>
+      <Actions>
+        <SettingsButton onClick={onClickSettings}>
+          <img src='static/images/icon-channelother.svg' />
+        </SettingsButton>
+      </Actions>
+    </ChannelHeaderContainer>
   )
 }
 

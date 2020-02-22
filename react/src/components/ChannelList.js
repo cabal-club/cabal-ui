@@ -1,31 +1,40 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import './ChannelList.scss'
+const ChannelListContainer = styled.div`
+`
+
+const Row = styled.div`
+  cursor: pointer;
+`
+
+const StarterMessage = styled.div`
+`
 
 export default function ChannelList ({ channels, currentChannel, loading, onClick }) {
   if (loading) {
     return (
-      <div className='channelList'>
+      <ChannelListContainer>
         Loading...
-      </div>
+      </ChannelListContainer>
     )
   }
   return (
-    <div className='channelList'>
+    <ChannelListContainer>
       {!channels.length &&
-        <div className='starterMessage'>
+        <StarterMessage>
           No channels
-        </div>
+        </StarterMessage>
       }
       {channels.length && channels.map((channel, index) => {
         return (
-          <div className='channelRow' key={index} onClick={onClick}>
+          <Row key={index} onClick={onClick}>
             #{channel.name}
-          </div>
+          </Row>
         )
       })}
-    </div>
+    </ChannelListContainer>
   )
 }
 

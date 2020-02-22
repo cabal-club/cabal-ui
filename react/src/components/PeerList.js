@@ -1,31 +1,40 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import './PeerList.scss'
+const PeerListContainer = styled.div`
+`
+
+const Row = styled.div`
+  cursor: pointer;
+`
+
+const StarterMessage = styled.div`
+`
 
 export default function PeerList ({ channel, loading, onClick }) {
   if (loading) {
     return (
-      <div className='PeerList'>
+      <PeerListContainer>
         Loading...
-      </div>
+      </PeerListContainer>
     )
   }
   return (
-    <div className='PeerList'>
+    <PeerListContainer>
       {!channel.users.length &&
-        <div className='starterMessage'>
+        <StarterMessage>
           No channel.
-        </div>
+        </StarterMessage>
       }
       {channel.users.length && channel.users.map((peer, index) => {
         return (
-          <div className='peerRow' key={index} onClick={onClick}>
+          <Row key={index} onClick={onClick}>
             {peer.online} {peer.nickname}
-          </div>
+          </Row>
         )
       })}
-    </div>
+    </PeerListContainer>
   )
 }
 

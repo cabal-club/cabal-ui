@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions'
 
 import Sidebar from './Sidebar'
 
-import { defaultCabal } from './Cabal.stories'
+import { defaultCabal } from './CabalList.stories'
 
 export const actions = {
 }
