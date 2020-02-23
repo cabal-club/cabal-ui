@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Message from './Message'
-import { connect } from 'react-redux'
 
 const MessageListContainer = styled.div`
   flex-grow: 1;

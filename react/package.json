@@ -4,13 +4,16 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.2.5",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
     "moment": "^2.24.0",
     "react": "^16.12.0",
     "react-blockies": "^1.4.1",
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "typescript": "^3.8.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.13",

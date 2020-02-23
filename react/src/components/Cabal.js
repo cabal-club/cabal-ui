@@ -23,6 +23,6 @@ export default function Cabal ({ cabals, currentCabal }) {
 }
 
 Cabal.propTypes = {
-  cabal: PropTypes.object.isRequired,
+  cabals: PropTypes.object.isRequired,
   currentCabal: PropTypes.object.isRequired
 }

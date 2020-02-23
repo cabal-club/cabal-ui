@@ -56,6 +56,6 @@ export default function AppSidebar ({ cabals, currentCabal }) {
 }
 
 AppSidebar.propTypes = {
-  cabal: PropTypes.object.isRequired,
+  cabals: PropTypes.object.isRequired,
   currentCabal: PropTypes.object.isRequired
 }

@@ -29,13 +29,13 @@ const Topic = styled.h2`
   color: #666;
 `
 
-const Actions = styled.h2`
+const Actions = styled.div`
   display: flex;
   text-align: right;
   vertical-align: middle;
 `
 
-const SettingsButton = styled.h2`
+const SettingsButton = styled.div`
   cursor: pointer;
   display: inline-block;
   margin-left: 1rem;
