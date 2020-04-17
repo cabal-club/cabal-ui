@@ -1,6 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { useSelector, useDispatch } from 'react-redux'
+
+// import '../../node_modules/emoji-mart/css/emoji-mart.css'
+// import { Picker } from 'emoji-mart'
+
+import { setEmojiPickerModalVisible } from '../features/cabals/cabalsSlice'
+import { publishMessage } from '../features/cabals/messagesSlice'
 
 const MessageComposerContainer = styled.div`
   background: #fff;
@@ -44,7 +51,19 @@ const Textarea = styled.textarea`
   width: 100%;
 `
 
-export default function MessageComposer ({ channelName }) {
+const EmojiPickerContainer = styled.div`
+  position: 'absolute';
+  bottom: '100px';
+  right: '16px';
+  display: 'none';
+`
+
+const ToggleEmojiPickerButton = styled.div``
+
+export default function MessageComposer () {
+  const dispatch = useDispatch()
+  const cabals = useSelector((state) => state.cabals)
+
   let textInput = ''
   let formField
 
@@ -53,11 +72,18 @@ export default function MessageComposer ({ channelName }) {
   }
 
   const onKeyUp = () => {
-    //resizeTextInput
+    // resizeTextInput
   }
 
-  const onSubmit = () => {
-
+  const onSubmit = (e) => {
+    const message = {
+      content: {
+        channel: cabals.currentChannel,
+        text: textInput.value
+      },
+      type: 'chat/text'
+    }
+    dispatch(publishMessage({ cabalKey: cabals.currentCabalKey, channel: cabals.currentChannel, message }))
   }
 
   const addEmoji = () => {
@@ -69,7 +95,7 @@ export default function MessageComposer ({ channelName }) {
   }
 
   const toggleEmojis = () => {
-
+    dispatch(setEmojiPickerModalVisible(!cabals.emojiPickerModalVisible))
   }
 
   return (
@@ -78,7 +104,8 @@ export default function MessageComposer ({ channelName }) {
         <Input onClick={focusInput}>
           <Form
             onSubmit={onSubmit}
-            ref={(form) => { formField = form }}>
+            ref={(form) => { formField = form }}
+          >
             <Textarea
               onKeyDown={onKeyDown}
               onKeyUp={onKeyUp}
@@ -86,20 +113,23 @@ export default function MessageComposer ({ channelName }) {
               aria-label='Type a message and press enter'
               placeholder='Write a message'
             />
+            <button onClick={onSubmit}>Send</button>
           </Form>
         </Input>
-        {/* <div className={'emoji__container'} ref={(el) => { this.emojiPicker = el }} style={{ position: 'absolute', bottom: '100px', right: '16px', display: 'none' }}>
-          <Picker
+        <EmojiPickerContainer visible={cabals.emojiPickerModalVisible}>
+          {/* <Picker
             onSelect={(e) => addEmoji(e)}
             native
             sheetSize={64}
             // showPreview={false}
             autoFocus
-            emoji={'point_up'}
-            title={'Pick an emoji...'}
-          />
-        </div> */}
-        {/* <div className={'composer__other'} onClick={toggleEmojis}><img src='static/images/icon-composerother.svg' /></div> */}
+            emoji='point_up'
+            title='Pick an emoji...'
+          /> */}
+        </EmojiPickerContainer>
+        <ToggleEmojiPickerButton onClick={toggleEmojis}>
+          <img src='static/images/icon-composerother.svg' />
+        </ToggleEmojiPickerButton>
       </InputWrapper>
     </MessageComposerContainer>
   )

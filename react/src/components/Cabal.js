@@ -13,11 +13,16 @@ const CabalContainer = styled.div`
 `
 
 export default function Cabal ({ cabals, currentCabal }) {
+  if (!currentCabal) {
+    return (
+      <div>Loading...</div>
+    )
+  }
   return (
     <CabalContainer>
       <AppSidebar cabals={cabals} currentCabal={currentCabal} />
       <Sidebar cabal={currentCabal} />
-      <Channel channel={currentCabal.currentChannel} />
+      <Channel cabal={currentCabal} channel={currentCabal.currentChannel} />
     </CabalContainer>
   )
 }

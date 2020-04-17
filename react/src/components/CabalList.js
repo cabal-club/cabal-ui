@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { useSelector, useDispatch } from 'react-redux'
+
+import {
+  focusCabal,
+  showScreen
+} from '../features/cabals/cabalsSlice'
 
 const CabalListContainer = styled.div`
   background-color: #16161d;
@@ -45,7 +51,21 @@ const Item = styled.div`
   }
 `
 
-export default function CabalList ({ cabals, currentCabal, loading, onClick }) {
+export default function CabalList ({ cabals, currentCabal, loading }) {
+  const dispatch = useDispatch()
+
+  const onClickCabalListItem = (cabalKey) => {
+    dispatch(focusCabal({ cabalKey }))
+  }
+
+  const onClickAddCabalButton = () => {
+    dispatch(showScreen('addCabal'))
+  }
+
+  const onClickAppSettingsButton = () => {
+    dispatch(showScreen('settings'))
+  }
+
   if (loading) {
     return (
       <CabalListContainer>
@@ -58,15 +78,18 @@ export default function CabalList ({ cabals, currentCabal, loading, onClick }) {
       <List>
         {cabals.length && cabals.map((cabal, index) => {
           return (
-            <Item key={index} onClick={onClick}>
+            <Item key={index} onClick={() => onClickCabalListItem(cabal.key)}>
               {cabal.key.substr(0, 2)}
             </Item>
           )
         })}
-        <Item>
+        <Item onClick={onClickAddCabalButton}>
           <img src='static/images/icon-newchannel.svg' />
         </Item>
       </List>
+      <Item onClick={onClickAppSettingsButton}>
+        <img src='static/images/icon-newchannel.svg' />
+      </Item>
     </CabalListContainer>
   )
 }

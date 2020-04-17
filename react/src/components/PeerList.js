@@ -5,14 +5,20 @@ import styled from 'styled-components'
 const PeerListContainer = styled.div`
 `
 
+const ListHeader = styled.div`
+  text-transform: uppercase;
+  padding: 2rem 1rem 1rem 1rem;
+`
+
 const Row = styled.div`
   cursor: pointer;
+  padding: 0.5rem 1rem;
 `
 
 const StarterMessage = styled.div`
 `
 
-export default function PeerList ({ channel, loading, onClick }) {
+export default function PeerList ({ users, loading, onClick }) {
   if (loading) {
     return (
       <PeerListContainer>
@@ -22,15 +28,17 @@ export default function PeerList ({ channel, loading, onClick }) {
   }
   return (
     <PeerListContainer>
-      {!channel.users.length &&
+      <ListHeader>Peers</ListHeader>
+      {!users.length &&
         <StarterMessage>
-          No channel.
+          No Peers.
         </StarterMessage>
       }
-      {channel.users.length && channel.users.map((peer, index) => {
+      {users.length && users.map((peer, index) => {
+        const name = peer.name || peer.key.substr(0, 6)
         return (
           <Row key={index} onClick={onClick}>
-            {peer.online} {peer.nickname}
+            {name} {peer.online}
           </Row>
         )
       })}
@@ -39,6 +47,6 @@ export default function PeerList ({ channel, loading, onClick }) {
 }
 
 PeerList.propTypes = {
-  channel: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
   onClick: PropTypes.func
 }

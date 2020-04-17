@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Message from './Message'
 
@@ -9,12 +10,22 @@ const MessageListContainer = styled.div`
   overflow: scroll;
 `
 
-export default function MessageList ({ messages, nickname, onScroll }) {
+const StarterMessage = styled.div`
+  color: #aaa;
+  flex-grow: 1;
+  margin: 1rem;
+  overflow: scroll;
+`
+
+export default function MessageList ({ nickname, onScroll }) {
+  const dispatch = useDispatch()
+  const { messages } = useSelector((state) => state.messages)
+
   if (messages.length === 0) {
     return (
-      <MessageListContainer starterMessage>
+      <StarterMessage>
         This is a new channel. Send a message to start things off!
-      </MessageListContainer>
+      </StarterMessage>
     )
   } else {
     let lastNickname = null

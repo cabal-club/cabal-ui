@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 
 import Channel from './Channel'
 import { manyMessages } from './MessageList.stories'
+import { defaultCabal } from './CabalList.stories'
 
 export const defaultUser = {
   nickname: 'person',
@@ -33,4 +34,4 @@ export const manyUsers = [
 ]
 
 storiesOf('Channel', module)
-  .add('default', () => <Channel channel={defaultChannel} />)
+  .add('default', () => <Channel cabalKey={defaultCabal} channel={defaultChannel} />)

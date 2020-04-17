@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { useSelector, useDispatch } from 'react-redux'
 
 const ChannelHeaderContainer = styled.div`
   -webkit-app-region: drag;
@@ -42,12 +43,23 @@ const SettingsButton = styled.div`
   vertical-align: middle;
 `
 
-export default function ChannelHeader ({ channel: { name, topic }, onClickSettings, onClickTopic }) {
+export default function ChannelHeader () {
+  const dispatch = useDispatch()
+  const cabals = useSelector((state) => state.cabals)
+
+  function onClickTopic () {
+
+  }
+
+  function onClickSettings () {
+
+  }
+
   return (
     <ChannelHeaderContainer>
       <Title>
-        <ChannelName>#{name}</ChannelName>
-        <Topic onClick={onClickTopic}>{topic}</Topic>
+        <ChannelName>#{cabals.currentChannel}</ChannelName>
+        <Topic onClick={onClickTopic}>{cabals.currentTopic}</Topic>
       </Title>
       <Actions>
         <SettingsButton onClick={onClickSettings}>

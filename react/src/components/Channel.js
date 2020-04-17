@@ -14,12 +14,12 @@ const ChannelContainer = styled.div`
   background: #fff;
 `
 
-export default function Channel ({ channel }) {
+export default function Channel ({ cabal, channel }) {
   return (
     <ChannelContainer>
-      <ChannelHeader channel={channel} />
+      <ChannelHeader />
       <MessageList messages={channel.messages} />
-      <MessageComposer channelName={channel.name} />
+      <MessageComposer />
     </ChannelContainer>
   )
 }

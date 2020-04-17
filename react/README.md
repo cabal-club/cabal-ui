@@ -14,3 +14,18 @@ cd cabal-ui/react
 npm i
 npm run storybook
 ```
+
+
+## How it can be used
+
+```
+* render process *
+
+cabal-ui-components
+🔼🔽------------------------------------------
+cabal-ipc
+🔼🔽
+cabal-client 
+
+* main process *
+```

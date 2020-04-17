@@ -12,15 +12,28 @@ const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  overflow-y: scroll;
   padding-top: 2rem;
+`
+
+const CabalName = styled.div`
+  padding: 1rem 1rem;
+  /* overflow: hidden; */
 `
 
 export default function Sidebar ({ cabal }) {
   return (
     <SidebarContainer>
-      {cabal.key}
-      <ChannelList channels={cabal.channels} />
-      <PeerList channel={cabal.currentChannel} />
+      <CabalName>
+        {cabal.key}
+      </CabalName>
+      <ChannelList
+        cabalKey={cabal.key}
+        channels={cabal.channels}
+        channelsJoined={cabal.channelsJoined}
+        currentChannel={cabal.currentChannel}
+      />
+      <PeerList users={cabal.users} />
     </SidebarContainer>
   )
 }
